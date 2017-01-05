@@ -16,6 +16,7 @@
 #   public *;
 #}
 
+# -- ICEPICK --
 -dontwarn icepick.**
 -keep class icepick.** { *; }
 -keep class **$$Icepick { *; }
@@ -23,3 +24,24 @@
     @icepick.* <fields>;
 }
 -keepnames class * { @icepick.State *;}
+
+# -- OKIO --
+-dontwarn okio.**
+-dontwarn retrofit2.Platform$Java8
+-dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
+
+# -- RXJAVA --
+-dontwarn sun.misc.**
+
+-keepclassmembers class rx.internal.util.unsafe.*ArrayQueue*Field* {
+   long producerIndex;
+   long consumerIndex;
+}
+
+-keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueProducerNodeRef {
+    rx.internal.util.atomic.LinkedQueueNode producerNode;
+}
+
+-keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueConsumerNodeRef {
+    rx.internal.util.atomic.LinkedQueueNode consumerNode;
+}

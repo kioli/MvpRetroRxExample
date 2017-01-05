@@ -48,7 +48,7 @@ public interface MyContract {
 	 */
 	interface MVPMyPresenter extends MVPPresenter<MVPMyView, MVPMyPresenter.MyModelFragment> {
 
-		class MyModelFragment extends DataFragment {
+		public static class MyModelFragment extends DataFragment {
 
 			public static String TAG = MyModelFragment.class.getSimpleName();
 
