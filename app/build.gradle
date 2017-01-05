@@ -1,0 +1,57 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion rootProject.ext.androidCompileSdkVersion
+    buildToolsVersion rootProject.ext.androidBuildToolsVersion
+
+    defaultConfig {
+        applicationId "com.kioli.mvpretrorxexample"
+        minSdkVersion rootProject.ext.androidMinSdkVersion
+        targetSdkVersion rootProject.ext.androidTargetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    Map<String, String> dependencies = rootProject.ext.dependencies;
+
+    provided dependencies.autoValue
+    provided dependencies.autoValueGson
+    provided dependencies.icepickProcessor
+
+    annotationProcessor dependencies.butterknifeApt
+    annotationProcessor dependencies.autoValue
+    annotationProcessor dependencies.autoValueRedacted
+    annotationProcessor dependencies.autoValueWith
+    annotationProcessor dependencies.autoValueParcel
+    annotationProcessor dependencies.autoValueGson
+
+    compile dependencies.appCompat
+    compile dependencies.design
+    compile dependencies.recyclerView
+    compile dependencies.butterknife
+    compile dependencies.okHttpInterceptor
+    compile dependencies.okHttpConnection
+    compile dependencies.retrofit
+    compile dependencies.retrofitConverterGson
+    compile dependencies.retrofitAdapterRxJava
+    compile dependencies.rxAndroid
+    compile dependencies.rxBinding
+    compile dependencies.rxJava
+    compile dependencies.rxLint
+    compile dependencies.icepick
+
+    testCompile dependencies.jUnit
+
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+}

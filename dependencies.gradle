@@ -1,0 +1,32 @@
+ext {
+    supportLibraryVersion = '25.1.0'
+    retrofitVersion = '2.1.0'
+    okhttpVersion = '3.3.0'
+    rxVersion = '1.1.0'
+    butterknifeVersion = '8.4.0'
+
+    dependencies = [
+            appCompat            : "com.android.support:appcompat-v7:$supportLibraryVersion",
+            design               : "com.android.support:design:$supportLibraryVersion",
+            recyclerView         : "com.android.support:recyclerview-v7:$supportLibraryVersion",
+            retrofit             : "com.squareup.retrofit2:retrofit:$retrofitVersion",
+            retrofitConverterGson: "com.squareup.retrofit2:converter-gson:$retrofitVersion",
+            retrofitAdapterRxJava: "com.squareup.retrofit2:adapter-rxjava:$retrofitVersion",
+            butterknife          : "com.jakewharton:butterknife:$butterknifeVersion",
+            butterknifeApt       : "com.jakewharton:butterknife-compiler:$butterknifeVersion",
+            okHttpInterceptor    : "com.squareup.okhttp3:logging-interceptor:$okhttpVersion",
+            okHttpConnection     : "com.squareup.okhttp3:okhttp-urlconnection:$okhttpVersion",
+            rxJava               : "io.reactivex:rxjava:$rxVersion",
+            rxAndroid            : "io.reactivex:rxandroid:$rxVersion",
+            rxBinding            : "com.jakewharton.rxbinding:rxbinding:0.3.0",
+            rxLint               : "nl.littlerobots.rxlint:rxlint:1.0",
+            jUnit                : "junit:junit:4.12",
+            autoValue            : "com.google.auto.value:auto-value:1.4-rc1",
+            autoValueParcel      : "com.ryanharter.auto.value:auto-value-parcel:0.2.5",
+            autoValueRedacted    : "com.squareup.auto.value:auto-value-redacted:1.0.0",
+            autoValueWith        : "com.gabrielittner.auto.value:auto-value-with:1.0.0",
+            autoValueGson        : "com.ryanharter.auto.value:auto-value-gson:0.4.3",
+            icepick              : "frankiesardo:icepick:3.2.0",
+            icepickProcessor     : "frankiesardo:icepick-processor:3.2.0"
+    ]
+}

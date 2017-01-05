@@ -1,0 +1,28 @@
+apply from: 'dependencies.gradle'
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.2.3'
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+        maven {url "https://clojars.org/repo/"}
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+ext {
+    androidCompileSdkVersion = 25
+    androidBuildToolsVersion = '25.0.1'
+    androidMinSdkVersion = 16
+    androidTargetSdkVersion = 25
+}

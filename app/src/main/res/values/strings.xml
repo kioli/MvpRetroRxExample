@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">MvpRetroRxExample</string>
+    <string name="button">Load data</string>
+</resources>
