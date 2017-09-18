@@ -2,13 +2,13 @@ package com.kioli.mvpretrorxexample;
 
 import android.app.Application;
 
-import com.kioli.mvpretrorxexample.core.data.NetworkService;
+import com.kioli.mvpretrorxexample.core.data.ServiceGenerator;
 
 public class App extends Application {
 
     private static App appContext;
 
-    private NetworkService networkService;
+    private ServiceGenerator serviceGenerator;
 
     public App() {
         appContext = this;
@@ -17,14 +17,14 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        networkService = new NetworkService();
+        serviceGenerator = new ServiceGenerator();
     }
 
     public static App getInstance() {
         return appContext;
     }
 
-    public NetworkService getNetworkService(){
-        return networkService;
+    public ServiceGenerator getServiceGenerator(){
+        return serviceGenerator;
     }
 }

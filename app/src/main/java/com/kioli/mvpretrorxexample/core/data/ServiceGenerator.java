@@ -1,11 +1,12 @@
 package com.kioli.mvpretrorxexample.core.data;
 
 import com.google.gson.GsonBuilder;
-import com.kioli.mvpretrorxexample.my.mvp.MyModel;
+import com.kioli.mvpretrorxexample.my.mvp.Person;
 
 import java.io.IOException;
 import java.util.List;
 
+import io.reactivex.Single;
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -13,22 +14,21 @@ import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
-import rx.Observable;
 
-public class NetworkService {
+public class ServiceGenerator {
 
 	private static String baseUrl = "http://uinames.com/";
 	private NetworkAPI networkAPI;
 
-	public NetworkService() {
+	public ServiceGenerator() {
 		this(baseUrl);
 	}
 
-	private NetworkService(String baseUrl) {
+	private ServiceGenerator(String baseUrl) {
 		final OkHttpClient.Builder httpClient = new OkHttpClient.Builder()
 				.addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
 				.addInterceptor(new Interceptor() {
@@ -51,7 +51,7 @@ public class NetworkService {
 		final Retrofit retrofit = new Retrofit.Builder()
 				.baseUrl(baseUrl)
 				.addConverterFactory(gsonConverterFactory)
-				.addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+				.addCallAdapterFactory(RxJava2CallAdapterFactory.create())
 				.client(httpClient.build())
 				.build();
 
@@ -64,9 +64,9 @@ public class NetworkService {
 
 	public interface NetworkAPI {
 		@GET("api/")
-		Observable<List<MyModel>> getGenderedNames(@Query("gender") String gender);
+		Single<List<Person>> getGenderedNames(@Query("gender") String gender);
 
 		@GET("api/")
-		Observable<List<MyModel>> getLocalisedNames(@Query("region") String region);
+		Single<List<Person>> getLocalisedNames(@Query("region") String region);
 	}
 }

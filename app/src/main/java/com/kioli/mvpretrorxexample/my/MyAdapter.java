@@ -10,7 +10,7 @@ import android.widget.Toast;
 import com.kioli.mvpretrorxexample.R;
 import com.kioli.mvpretrorxexample.my.mvp.MyContract;
 import com.kioli.mvpretrorxexample.my.mvp.MyContract.MVPMyView;
-import com.kioli.mvpretrorxexample.my.mvp.MyModel;
+import com.kioli.mvpretrorxexample.my.mvp.Person;
 
 import java.util.List;
 
@@ -29,10 +29,10 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 		}
 	}
 
-	private List<MyModel> _data;
+	private List<Person> _data;
 	private MVPMyView _view;
 
-	public MyAdapter(final List<MyModel> dataset, final MyContract.MVPMyView view) {
+	public MyAdapter(final List<Person> dataset, final MyContract.MVPMyView view) {
 		_data = dataset;
 		_view = view;
 	}
@@ -51,7 +51,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 	@Override
 	public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-		final MyModel model = _data.get(position);
+		final Person model = _data.get(position);
 		final String content = model.name()
 				.concat(" - ").concat(model.gender())
 				.concat(" - ").concat(model.region());

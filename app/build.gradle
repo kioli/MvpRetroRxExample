@@ -45,7 +45,6 @@ dependencies {
     compile dependencies.retrofitConverterGson
     compile dependencies.retrofitAdapterRxJava
     compile dependencies.rxAndroid
-    compile dependencies.rxBinding
     compile dependencies.rxJava
     compile dependencies.rxLint
     compile dependencies.icepick

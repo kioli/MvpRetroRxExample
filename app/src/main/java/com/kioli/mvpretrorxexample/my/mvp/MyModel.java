@@ -1,20 +1,38 @@
 package com.kioli.mvpretrorxexample.my.mvp;
 
-import android.os.Parcelable;
+import com.kioli.mvpretrorxexample.App;
 
-import com.google.auto.value.AutoValue;
-import com.google.gson.Gson;
-import com.google.gson.TypeAdapter;
+import java.util.ArrayList;
+import java.util.List;
 
-@AutoValue
-public abstract class MyModel implements Parcelable {
+import io.reactivex.subscribers.DisposableSubscriber;
 
-	public abstract String name();
-	public abstract String surname();
-	public abstract String gender();
-	public abstract String region();
+public class MyModel implements MyContract.ShowModel {
+	private MyRepository repository = new MyRepository(App.getInstance().getServiceGenerator());
 
-	public static TypeAdapter<MyModel> typeAdapter(Gson gson) {
-		return new $AutoValue_MyModel.GsonTypeAdapter(gson);
+	@Override
+	public void getPeople(final MyPresenter callback) {
+		repository.fetchPeople()
+				.subscribeOn(DEFAULT_SUBSCRIBE_ON_SCHEDULER)
+				.observeOn(DEFAULT_OBSERVE_ON_SCHEDULER)
+				.subscribeWith(new DisposableSubscriber<List<Person>>() {
+					final ArrayList<Person> result = new ArrayList<>();
+
+					@Override
+					public void onNext(final List<Person> o) {
+						result.addAll(o);
+					}
+
+					@Override
+					public void onError(final Throwable t) {
+						callback.callbackForData(new ArrayList<Person>());
+					}
+
+					@Override
+					public void onComplete() {
+						callback.callbackForData(result);
+					}
+				});
 	}
 }
+
